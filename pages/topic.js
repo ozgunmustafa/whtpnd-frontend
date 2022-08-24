@@ -335,7 +335,9 @@ export default function Home() {
             </div>
           </div>
         ) : modalType === 'comments' ? (
-          activeFeedComments.map((item) => <p>{item.question}</p>)
+          activeFeedComments.map((item, index) => (
+            <p key={'c-' + index}>{item.question}</p>
+          ))
         ) : (
           ''
         )}
@@ -487,7 +489,7 @@ export default function Home() {
                 <section className="section-padding-2">
                   <Title level={5}>Top Creators</Title>
                   {[...Array(5)].map((e, i) => (
-                    <Link href="/profile">
+                    <Link href="/profile" key={'user' + i}>
                       <a className="user-card mb-1">
                         <div className="">
                           <Avvatar
@@ -513,8 +515,8 @@ export default function Home() {
                       'highlight-topics ' + (expandTopics ? 'expanded ' : '')
                     }
                   >
-                    {feedCategories.map((category) => (
-                      <li>
+                    {feedCategories.map((category, i) => (
+                      <li key={'ctgn' + i}>
                         <a href="">{category.category}</a>
                       </li>
                     ))}
