@@ -36,7 +36,6 @@ const Login = () => {
         <div className="container">
           <Row style={{ minHeight: '100vh', alignItems: 'center' }}>
             <Col xs={24} lg={14}>
-
               <Image
                 src="/login-illustration.svg"
                 alt="Picture of the author"
@@ -114,7 +113,9 @@ const Login = () => {
                   </Form.Item>
                 </Form>
                 <p className="text-center">
-                  <span className="text-muted">Don't you have an account?</span>
+                  <span className="text-muted">
+                    Don&apos;t you have an account?
+                  </span>
                   <Link href="/register">
                     <a>
                       <i>Register</i>
@@ -130,4 +131,4 @@ const Login = () => {
   )
 }
 
-export default login
+export default Login
