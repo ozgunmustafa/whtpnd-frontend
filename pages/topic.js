@@ -30,7 +30,7 @@ import Editor from '../components/editor'
 const { Title, Paragraph } = Typography
 const ShieldIcon = (props) => <Icon component={ShieldSvg} {...props} />
 
-export default function Home() {
+export default function Topics() {
   const [feedData, setFeedData] = React.useState([
     {
       id: 1,
@@ -366,7 +366,7 @@ export default function Home() {
                       />
                       <div
                         className="share-box_content"
-                        contenteditable="true"
+                        contentEditable="true"
                         onBlur={(e) => setDivContent(e.target.innerHTML)}
                         ref={textInput}
                       >
