@@ -10,7 +10,7 @@ import { registerUser } from '../src/features/auth/authSlice'
 
 const { Title, Paragraph } = Typography
 
-const register = () => {
+const Register = () => {
   const dispatch = useDispatch()
   const authorization = useSelector((state) => state.authentication)
 

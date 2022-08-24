@@ -11,7 +11,7 @@ import { loginUser } from '../src/features/auth/authSlice'
 import EmptyContent from '../components/EmptyContent'
 const { Title, Paragraph } = Typography
 
-const login = () => {
+const Login = () => {
   const dispatch = useDispatch()
   const authorization = useSelector((state) => state.authentication)
 
@@ -36,7 +36,7 @@ const login = () => {
         <div className="container">
           <Row style={{ minHeight: '100vh', alignItems: 'center' }}>
             <Col xs={24} lg={14}>
-             
+
               <Image
                 src="/login-illustration.svg"
                 alt="Picture of the author"
