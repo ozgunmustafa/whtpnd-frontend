@@ -373,7 +373,7 @@ function CategoryIndex({ category }) {
                       />
                       <div
                         className="share-box_content"
-                        contenteditable="true"
+                        contentEditable="true"
                         onBlur={(e) => setDivContent(e.target.innerHTML)}
                         ref={textInput}
                       >
