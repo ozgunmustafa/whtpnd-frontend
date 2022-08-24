@@ -342,7 +342,9 @@ function CategoryIndex({ category }) {
             </div>
           </div>
         ) : modalType === 'comments' ? (
-          activeFeedComments.map((item) => <p>{item.question}</p>)
+          activeFeedComments.map((item, index) => (
+            <p key={'cmnt' + index}>{item.question}</p>
+          ))
         ) : (
           ''
         )}
@@ -496,11 +498,10 @@ function CategoryIndex({ category }) {
                 <section className="section-padding-2">
                   <Title level={5}>Top Creators</Title>
                   {[...Array(5)].map((e, i) => (
-                    <Link href="/profile">
-                      <a className="user-card mb-1">
-                        <div className="">
+                    <Link href="/profile" key={'avvva' + i}>
+                      <a className="user-card mb-1" key={'avva' + i}>
+                        <div className="" key={'avvaa' + i}>
                           <Avvatar
-                            key={'avva' + i}
                             size={50}
                             src={`https://joeschmoe.io/api/v1/male/random`}
                             text="Nich Babich"
@@ -522,8 +523,8 @@ function CategoryIndex({ category }) {
                       'highlight-topics ' + (expandTopics ? 'expanded ' : '')
                     }
                   >
-                    {feedCategories.map((category) => (
-                      <li>
+                    {feedCategories.map((category, index) => (
+                      <li key={'fdCtg' + index}>
                         <a href="">{category.category}</a>
                       </li>
                     ))}
