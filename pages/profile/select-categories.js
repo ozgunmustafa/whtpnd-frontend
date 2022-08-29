@@ -43,7 +43,7 @@ export default function SelectCategories() {
   React.useEffect(() => {
     dispatch(getAllCategories())
     setUserId(localStorage.getItem('userId'))
-  }, [])
+  }, [dispatch])
 
 
   const [feedCategories, setFeedCategories] = React.useState([

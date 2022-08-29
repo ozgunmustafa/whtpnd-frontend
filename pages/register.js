@@ -6,7 +6,7 @@ import { Col, Modal, Row, Button, Input, Card, Form } from 'antd'
 import Image from 'next/image'
 import { Typography } from 'antd'
 import Link from 'next/link'
-import { registerUser } from '../src/features/auth/authSlice'
+import { registerUser } from '../src/features/auth/authentication'
 
 const { Title, Paragraph } = Typography
 

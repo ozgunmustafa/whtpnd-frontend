@@ -26,7 +26,6 @@ import Icon, {
   SearchOutlined
 } from '@ant-design/icons'
 import ActionButton from '../../components/ActionButton'
-import Editor from '../../components/editor'
 import unfetch from 'isomorphic-unfetch'
 import slug from 'slug'
 

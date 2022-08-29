@@ -3,6 +3,7 @@ import MainNavigation from './partials/MainNavigation'
 import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, Button, Modal, Tabs } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
@@ -22,7 +23,11 @@ const info = () => {
 }
 
 const Layout = (props) => {
-  const [userAuthenticated, setUserAuthenticated] = React.useState(false)
+  const { user } = useSelector((state) => state.authentication)
+  const st = useSelector((state) => state)
+  console.log('xx', st)
+
+  //const [userAuthenticated, setUserAuthenticated] = React.useState(false)
   const [isModalVisible, setIsModalVisible] = React.useState(false)
 
   const onChange = (key) => {
@@ -79,8 +84,8 @@ const Layout = (props) => {
               </a>
             </Link>
             <MainNavigation></MainNavigation>
-            {userAuthenticated ? (
-              <Link href="/login">
+            {user ? (
+              <Link href="/">
                 <a>
                   <Button
                     type="dashed"

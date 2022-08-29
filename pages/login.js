@@ -1,22 +1,23 @@
 import Layout from '../components/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { useRouter } from 'next/router'
 import React from 'react'
 import Head from 'next/head'
 import { Col, Modal, Row, Button, Input, Card, Form } from 'antd'
 import Image from 'next/image'
 import { Typography } from 'antd'
 import Link from 'next/link'
-import { loginUser } from '../src/features/auth/authSlice'
-import EmptyContent from '../components/EmptyContent'
+import { loginUser } from '../src/features/auth/authentication'
 const { Title, Paragraph } = Typography
 
 const Login = () => {
+  const router = useRouter()
   const dispatch = useDispatch()
   const authorization = useSelector((state) => state.authentication)
 
   const onFinish = (values) => {
     dispatch(loginUser(values))
+    router.push('/')
   }
 
   const onFinishFailed = (errorInfo) => {

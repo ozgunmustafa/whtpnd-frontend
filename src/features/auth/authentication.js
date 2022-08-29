@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import UserService from '../../services/UserService'
 
 const initialState = {
-  data: null,
+  user: null,
   loading: false,
   error: ''
 }
@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk(
     return res.data
   }
 )
-const authSlice = createSlice({
+const authentication = createSlice({
   name: 'authentication',
   initialState,
   reducers: {},
@@ -37,7 +37,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false
-        state.data = action.payload
+        state.user = action.payload
         state.error = ''
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -50,7 +50,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false
-        state.data = action.payload
+        state.user = action.payload
         state.error = ''
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -60,4 +60,4 @@ const authSlice = createSlice({
   }
 })
 
-export default authSlice.reducer
+export default authentication.reducer
