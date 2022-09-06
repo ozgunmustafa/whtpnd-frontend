@@ -19,7 +19,6 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }) => {
     const res = await UserService.loginUser({ email, password })
     localStorage.setItem('token', res.data.access_token)
-    //console.log(res.data)
     localStorage.setItem('access_token', res.data.access_token)
     localStorage.setItem('userId', res.data.data.id)
     return res.data

@@ -19,7 +19,7 @@
 body {
   //background-color: var(--body-color) !important;
   font-family: var(--body-font);
-  background-color: #f8f8f8;
+  //background-color: #f8f8f8;
 }
 * {
   padding: 0;
@@ -367,7 +367,7 @@ button {
     min-width: 88px;
     text-align: center;
     cursor: pointer;
-      margin-bottom: 7px;
+    margin-bottom: 7px;
     &:hover {
       background-color: #ececec;
     }
@@ -387,7 +387,54 @@ button {
     padding: 0 clamp(1rem, 3%, 3rem);
   }
 }
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 90px;
+  overflow: hidden;
 
+  &.expanded {
+    max-height: unset;
+  }
+}
+
+.category-pill {
+  border-radius: 50em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem 0.5rem 0.2rem 0.75rem;
+  border: 1px solid #cdcdcd;
+  margin: 0 5px 5px 0;
+  flex: 1;
+  max-width: 180px;
+
+  &_text {
+    width: 100%;
+    min-width: 75px;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: auto;
+    margin-right: 5px;
+    &:hover {
+      color: inherit;
+    }
+    //text-overflow: ellipsis;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &_btn {
+    border-radius: 50%;
+    color: currentColor;
+    //background-color: #67cd43;
+  }
+  &.active {
+    background-color: #67cd43;
+    border-color: #67cd43;
+    color: white;
+  }
+}
 .card-padding-responsive {
   padding: clamp(1.3rem, 1%, 2rem) clamp(0rem, 1%, 2rem);
 }
@@ -457,6 +504,9 @@ button {
 }
 .order-3 {
   order: 3;
+}
+.d-none {
+  display: none;
 }
 
 @for $i from 1 through 9 {

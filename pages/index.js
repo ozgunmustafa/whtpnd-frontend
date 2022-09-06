@@ -1,26 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Col, Modal, Row, Button, Input } from 'antd'
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import { Typography } from 'antd'
 import Avvatar from '../components/Avvatar'
-import { Avatar } from 'antd'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import unfetch from 'isomorphic-unfetch'
 import slug from 'slug'
 
-import {
-  BookmarkIcon,
-  BookmarkIconActive,
-  CommentsIcon,
-  ShareIcon,
-  ShieldSvg
-} from '../components/CustomIcons'
+import { ChevronDownIcon, ShieldSvg } from '../components/CustomIcons'
 import Icon, {
-  InstagramOutlined,
-  FacebookOutlined,
-  TwitterOutlined,
   PlusOutlined,
   MinusOutlined,
   SearchOutlined
@@ -30,6 +20,9 @@ import { isLoggedIn } from '../src/utils/authentication'
 import { getAllCategories } from '../src/features/categories/categorySlice'
 import CategoryService from '../src/services/CategoryService'
 import PostService from '../src/services/PostService'
+import PostCard from '../components/PostCard'
+import CategoryPill from '../components/CategoryPill'
+import classNames from 'classnames'
 
 const { Title, Paragraph } = Typography
 const ShieldIcon = (props) => <Icon component={ShieldSvg} {...props} />
@@ -113,7 +106,7 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        {modalType === 'share' ? (
+        {/*modalType === 'share' ? (
           <div>
             <Typography.Title
               level={3}
@@ -152,7 +145,7 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
           ))
         ) : (
           ''
-        )}
+        )*/}
       </Modal>
       <Layout
         title="Create Next App"
@@ -176,27 +169,29 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
                   <Title level={3} className="">
                     Highlight Topics
                   </Title>
-                  <ul
-                    className={
-                      'highlight-topics ' + (expandTopics ? 'expanded ' : '')
-                    }
+                  <div
+                    className={classNames({
+                      'category-pills mb-3': true,
+                      expanded: expandTopics
+                    })}
                   >
                     {featuredCategories.data.map((item, index) => (
-                      <li key={'category-card' + index}>
-                        <Link
-                          href="/category/[slug]"
-                          as={`/category/${slug(item.title)}-${item._id}`}
-                          key={'ctg-' + item._id}
-                        >
-                          <a>{item.title}</a>
-                        </Link>
-                      </li>
+                      <CategoryPill
+                        item={item}
+                        key={'category-pill' + index}
+                        active={index % 3 == 0 ? true : false}
+                      />
                     ))}
-                  </ul>
+                    
+                  </div>
+
                   <Button
                     type="text"
-                    className="expand-btn w-100 py-3"
-                    icon={expandTopics ? <MinusOutlined /> : <PlusOutlined />}
+                    className={classNames({
+                      'expand-btn w-100 py-3': true,
+                      'd-none': featuredCategories.data.length < 8
+                    })}
+                    icon={<ChevronDownIcon />}
                     onClick={() => {
                       setExpandTopics(!expandTopics)
                     }}
@@ -208,86 +203,9 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
                   <Title level={3} className="">
                     Reading Suggestions
                   </Title>
+
                   {posts.data.map((item, index) => (
-                    <div
-                      className="post-card bg-white radius-1 mb-2"
-                      key={'feed-' + item._id}
-                    >
-                      <Avvatar
-                        size={35}
-                        src={`https://joeschmoe.io/api/v1/random`}
-                        // text={item.category ? item.category.title : 'Lorem'}
-                        text={
-                          item.category ? (
-                            <Link
-                              href="/category/[slug]"
-                              as={`/category/${slug(item.category.title)}-${
-                                item.category._id
-                              }`}
-                              key={'ctg-' + item.category._id}
-                            >
-                              <a>{item.category.title}</a>
-                            </Link>
-                          ) : (
-                            'Lorem'
-                          )
-                        }
-                        description={
-                          <Link
-                            href="/profile/[slug]"
-                            as={`/profile/${slug(item.user.name)}-${
-                              item.user._id
-                            }`}
-                            key={'featuredUser' + item._id}
-                          >
-                            <a>{item.user.name}</a>
-                          </Link>
-                        }
-                        style={{ backgroundColor: '#d1d1d1' }}
-                      />
-
-                      <div style={{ marginTop: '15px' }}>
-                        <span
-                          style={{ fontSize: '16px' }}
-                          className="fw-600 lh-sm "
-                        >
-                          {item.title}
-                        </span>
-                        <p>{item.content}</p>
-                      </div>
-
-                      <div className="d-flex">
-                        <ActionButton
-                          icon={<CommentsIcon />}
-                          text={item.comments.length + ' Yorum'}
-                          style={{ marginRight: '7px', color: '#919191' }}
-                          onClick={() => {
-                            showModal('comments')
-                            getPostComments(item._id)
-                          }}
-                        />
-                        <ActionButton
-                          icon={<ShareIcon />}
-                          text="Paylaş"
-                          style={{ marginRight: '7px', color: '#919191' }}
-                          onClick={() => {
-                            showModal('share')
-                            setShareUrl('https://temp-mail.org/tr/')
-                          }}
-                        />
-                        <ActionButton
-                          icon={
-                            index % 2 === 1 ? (
-                              <BookmarkIconActive />
-                            ) : (
-                              <BookmarkIcon />
-                            )
-                          }
-                          text="Yer İşareti"
-                          style={{ marginRight: '7px', color: '#919191' }}
-                        />
-                      </div>
-                    </div>
+                    <PostCard key={'feed-' + item._id} item={item} />
                   ))}
                 </section>
               </Col>

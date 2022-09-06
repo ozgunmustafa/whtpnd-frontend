@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, Button, Modal, Tabs } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
+import LoginForm from './LoginForm'
 const { TabPane } = Tabs
 
 const info = () => {
@@ -54,7 +55,7 @@ const Layout = (props) => {
       >
         <Tabs defaultActiveKey="1" type="card">
           <TabPane tab="Sign In" key="1">
-            Content of card tab 1
+            <LoginForm/>
           </TabPane>
           <TabPane tab="Sign Up" key="2">
             Content of card tab 2
@@ -83,7 +84,6 @@ const Layout = (props) => {
                 />
               </a>
             </Link>
-            <MainNavigation></MainNavigation>
             {user ? (
               <Link href="/">
                 <a>

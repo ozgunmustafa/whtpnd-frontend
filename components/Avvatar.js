@@ -3,7 +3,7 @@ import React from 'react'
 
 const Avvatar = (props) => {
   return (
-    <div className="d-flex align-items-center">
+    <div className={`d-flex align-items-center ${props.className}`}>
       <Avatar {...props} />
       <div className="d-flex flex-column" style={{ marginLeft: '7px' }}>
         <span style={{ fontSize: '16px',marginBottom:'3px' }} className="fw-600 lh-sm ">

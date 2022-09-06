@@ -1,5 +1,62 @@
 import Icon from '@ant-design/icons'
 
+const ChevronDownSVG = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clipPath="url(#clip0_407_27)">
+      <path
+        d="M13.2336 7.7418L10.0002 10.9751L6.76689 7.7418C6.44189 7.4168 5.91689 7.4168 5.59189 7.7418C5.26689 8.0668 5.26689 8.5918 5.59189 8.9168L9.41689 12.7418C9.74189 13.0668 10.2669 13.0668 10.5919 12.7418L14.4169 8.9168C14.7419 8.5918 14.7419 8.0668 14.4169 7.7418C14.0919 7.42513 13.5586 7.4168 13.2336 7.7418V7.7418Z"
+        fill="black"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_407_27">
+        <rect width="20" height="20" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+)
+
+const CheckSVG = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clipPath="url(#clip0_403_24)">
+      <path
+        d="M7.49987 13.4746L4.6082 10.5829C4.2832 10.2579 3.7582 10.2579 3.4332 10.5829C3.1082 10.9079 3.1082 11.4329 3.4332 11.7579L6.91654 15.2413C7.24154 15.5663 7.76654 15.5663 8.09154 15.2413L16.9082 6.42461C17.2332 6.09961 17.2332 5.57461 16.9082 5.24961C16.5832 4.92461 16.0582 4.92461 15.7332 5.24961L7.49987 13.4746Z"
+        fill="currentColor"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_403_24">
+        <rect width="20" height="20" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+)
+const PlusSVG = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M5.625 11.25H10V15.625C10 15.7908 10.0658 15.9497 10.1831 16.0669C10.3003 16.1842 10.4592 16.25 10.625 16.25C10.7908 16.25 10.9497 16.1842 11.0669 16.0669C11.1842 15.9497 11.25 15.7908 11.25 15.625V11.25H15.625C15.7908 11.25 15.9497 11.1842 16.0669 11.0669C16.1842 10.9497 16.25 10.7908 16.25 10.625C16.25 10.4592 16.1842 10.3003 16.0669 10.1831C15.9497 10.0658 15.7908 10 15.625 10H11.25V5.625C11.25 5.45924 11.1842 5.30027 11.0669 5.18306C10.9497 5.06585 10.7908 5 10.625 5C10.4592 5 10.3003 5.06585 10.1831 5.18306C10.0658 5.30027 10 5.45924 10 5.625V10H5.625C5.45924 10 5.30027 10.0658 5.18306 10.1831C5.06585 10.3003 5 10.4592 5 10.625C5 10.7908 5.06585 10.9497 5.18306 11.0669C5.30027 11.1842 5.45924 11.25 5.625 11.25V11.25Z"
+      fill="currentColor"
+    />
+  </svg>
+)
 const ShareIcon = () => {
   return (
     <svg
@@ -59,7 +116,7 @@ const BookmarkIconActive = () => {
     >
       <path
         d="M5 4.74996V16.5622C4.99995 16.6382 5.01874 16.7128 5.05452 16.7789C5.0903 16.8449 5.14185 16.9 5.20408 16.9388C5.26631 16.9775 5.33708 16.9986 5.40942 16.9999C5.48177 17.0013 5.55319 16.9828 5.61667 16.9463L10 14.4351L14.3833 16.9463C14.4468 16.9828 14.5182 17.0013 14.5906 16.9999C14.6629 16.9986 14.7337 16.9775 14.7959 16.9388C14.8582 16.9 14.9097 16.8449 14.9455 16.7789C14.9813 16.7128 15.0001 16.6382 15 16.5622V4.74996C15 4.28584 14.8244 3.84073 14.5118 3.51255C14.1993 3.18437 13.7754 3 13.3333 3H6.66667C6.22464 3 5.80072 3.18437 5.48816 3.51255C5.17559 3.84073 5 4.28584 5 4.74996V4.74996Z"
-        fill="#F66B0E"
+        fill="#ffa52e"
       />
     </svg>
   )
@@ -398,6 +455,12 @@ const TextJustifySvg = () => (
   </svg>
 )
 
+const PlusIcon = (props) => <Icon component={PlusSVG} {...props} />
+const CheckIcon = (props) => <Icon component={CheckSVG} {...props} />
+const ChevronDownIcon = (props) => (
+  <Icon component={ChevronDownSVG} {...props} />
+)
+
 const ItalicIcon = (props) => <Icon component={ItalicSVG} {...props} />
 const BoldIcon = (props) => <Icon component={BoldSVG} {...props} />
 const ParagraphIcon = (props) => <Icon component={ParagraphSvg} {...props} />
@@ -444,5 +507,8 @@ export {
   TextCenterIcon,
   TextRightIcon,
   TextLeftIcon,
-  TextJustifyIcon
+  TextJustifyIcon,
+  PlusIcon,
+  CheckIcon,
+  ChevronDownIcon
 }

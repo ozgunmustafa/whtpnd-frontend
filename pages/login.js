@@ -1,7 +1,7 @@
 import Layout from '../components/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import { Col, Modal, Row, Button, Input, Card, Form } from 'antd'
 import Image from 'next/image'
@@ -11,15 +11,22 @@ import { loginUser } from '../src/features/auth/authentication'
 const { Title, Paragraph } = Typography
 
 const Login = () => {
+  const authorization = useSelector((state) => state.authentication)
+
   const router = useRouter()
   const dispatch = useDispatch()
-  const authorization = useSelector((state) => state.authentication)
 
   const onFinish = (values) => {
     dispatch(loginUser(values))
     router.push('/')
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      router.push('/')
+    }
+  })
   const onFinishFailed = (errorInfo) => {
     //console.log('Failed:', errorInfo)
   }
