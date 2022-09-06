@@ -362,6 +362,42 @@ function CategoryIndex({ category }) {
           <div className="container">
             <Row gutter={20}>
               <Col className="gutter-row  mb-3" xs={24} lg={16}>
+                <section className="section-padding-1 hide-on-desktop">
+                  <Card
+                    title={
+                      <div className="d-flex flex-wrap align-items-center justify-content-between">
+                        {category.title}
+
+                        <Button
+                          type="primary"
+                          style={{
+                            borderColor: '#14a800',
+                            backgroundColor: '#14a800',
+                            color: 'white'
+                          }}
+                        >
+                          Follow
+                        </Button>
+                      </div>
+                    }
+                    className="topic-card"
+                  >
+                    <Row gutter={20}>
+                      <Col className="gutter-row " span={12}>
+                        <Title level={3} className="lh-sm mb-0">
+                          {category.posts.length}
+                        </Title>
+                        <p className="text-muted mb-0">Entries</p>
+                      </Col>
+                      <Col className="gutter-row " span={12}>
+                        <Title level={3} className="lh-sm mb-0">
+                          {category.followers.length}
+                        </Title>
+                        <p className="text-muted mb-0">Followers</p>
+                      </Col>
+                    </Row>
+                  </Card>
+                </section>
                 <section>
                   <div className="share-box mb-3">
                     <div className="share-box_header">
@@ -468,7 +504,7 @@ function CategoryIndex({ category }) {
               <Col className="gutter-row mb-3" xs={24} lg={8}>
                 <Input
                   size="large"
-                  className="radius-pill mb-1"
+                  className="radius-pill mb-1 hide-on-mobile"
                   placeholder="Ara"
                   prefix={
                     <SearchOutlined
@@ -476,8 +512,25 @@ function CategoryIndex({ category }) {
                     />
                   }
                 />
-                <section className="section-padding-1">
-                  <Card title={category.title} className="topic-card">
+                <section className="section-padding-1 hide-on-mobile">
+                  <Card
+                    title={
+                      <div className="d-flex flex-wrap align-items-center justify-content-between">
+                        {category.title}
+                        <Button
+                          type="primary"
+                          style={{
+                            borderColor: '#14a800',
+                            backgroundColor: '#14a800',
+                            color: 'white'
+                          }}
+                        >
+                          Follow
+                        </Button>
+                      </div>
+                    }
+                    className="topic-card"
+                  >
                     <Row gutter={20}>
                       <Col className="gutter-row " span={12}>
                         <Title level={3} className="lh-sm mb-0">

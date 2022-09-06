@@ -369,10 +369,73 @@ function UserProfile({ user }) {
           <div className="container">
             <Row gutter={20}>
               <Col className="gutter-row  mb-3" xs={24} lg={15}>
+                <section className="section-padding-1 hide-on-desktop">
+                  <Card className="topic-card ">
+                    <Row gutter={20}>
+                      <Col className="gutter-row text-center" span={24}>
+                        <div className="d-flex flex-column align-items-center mb-5">
+                          <span className="prfl-avatar creator">
+                            <Avatar
+                              src="https://joeschmoe.io//api/v1/female/jana"
+                              size={64}
+                              className=""
+                            />
+                          </span>
+
+                          <span
+                            style={{ fontSize: '16px' }}
+                            className="fw-600 lh-sm mb-1"
+                          >
+                            {user.name}
+                          </span>
+                          <span
+                            style={{ fontSize: '14px' }}
+                            className="text-muted lh-sm"
+                          >
+                            Velit culpa laborum laboris eu incididunt enim Lorem
+                            cupidatat id irure.
+                          </span>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row gutter={20} className="mb-3">
+                      <Col className="gutter-row text-center" span={8}>
+                        <Title level={5} className="lh-sm mb-0">
+                          65K
+                        </Title>
+                        <p className="text-muted mb-0">Entries</p>
+                      </Col>
+                      <Col className="gutter-row text-center" span={8}>
+                        <Title level={5} className="lh-sm mb-0">
+                          5K
+                        </Title>
+                        <p className="text-muted mb-0">Followers</p>
+                      </Col>
+                      <Col className="gutter-row  text-center" span={8}>
+                        <Title level={5} className="lh-sm mb-0">
+                          {user.followingCategory.length +
+                            user.followingUser.length}
+                        </Title>
+                        <p className="text-muted mb-0">Following</p>
+                      </Col>
+                    </Row>
+                    <Row gutter={20}>
+                      <Col className="gutter-row text-center" span={24}>
+                        <Button
+                          icon={<FormOutlined />}
+                          shape="circle"
+                          style={{ marginRight: '5px' }}
+                        ></Button>
+                        <Button shape="round">Follow</Button>
+                      </Col>
+                    </Row>
+                  </Card>
+                </section>
+
                 <section>
                   <Title level={4}>Explore</Title>
-
-                  {data == null
+                  {/*
+{data == null
                     ? [...Array(5)].map((item, index) => (
                         <CategoryListPlaceHolder
                           key={'placeholder-category' + index}
@@ -433,8 +496,9 @@ function UserProfile({ user }) {
                           </Row>
                         </Card>
                       ))}
+ <PostPlaceholder />
+              */}
 
-                  <PostPlaceholder />
                   {feedData.map((feedItem, index) => (
                     <div
                       className="card-padding-responsive bg-white radius-1 border-bottom-light"
@@ -491,7 +555,7 @@ function UserProfile({ user }) {
               <Col className="gutter-row mb-3" xs={24} lg={9}>
                 <Input
                   size="large"
-                  className="radius-pill mb-1"
+                  className="radius-pill mb-1 hide-on-mobile"
                   placeholder="Ara"
                   prefix={
                     <SearchOutlined
@@ -499,8 +563,8 @@ function UserProfile({ user }) {
                     />
                   }
                 />
-                <section className="section-padding-1">
-                  <Card className="topic-card">
+                <section className="section-padding-1 hide-on-mobile">
+                  <Card className="topic-card ">
                     <Row gutter={20}>
                       <Col className="gutter-row text-center" span={24}>
                         <div className="d-flex flex-column align-items-center mb-5">

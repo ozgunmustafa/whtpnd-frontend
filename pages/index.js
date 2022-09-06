@@ -10,11 +10,7 @@ import unfetch from 'isomorphic-unfetch'
 import slug from 'slug'
 
 import { ChevronDownIcon, ShieldSvg } from '../components/CustomIcons'
-import Icon, {
-  PlusOutlined,
-  MinusOutlined,
-  SearchOutlined
-} from '@ant-design/icons'
+import Icon, { SearchOutlined } from '@ant-design/icons'
 import ActionButton from '../components/ActionButton'
 import { isLoggedIn } from '../src/utils/authentication'
 import { getAllCategories } from '../src/features/categories/categorySlice'
@@ -160,18 +156,14 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
         <section className="section-padding-1">
           <div className="container">
             <Row gutter={20}>
-              <Col
-                className="gutter-row  mb-3 order-2 order-lg-1"
-                xs={24}
-                lg={16}
-              >
-                <section>
+              <Col className="gutter-row  mb-3 " xs={24} lg={16}>
+                <section className="mb-3">
                   <Title level={3} className="">
                     Highlight Topics
                   </Title>
                   <div
                     className={classNames({
-                      'category-pills mb-3': true,
+                      'category-pills': true,
                       expanded: expandTopics
                     })}
                   >
@@ -182,14 +174,12 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
                         active={index % 3 == 0 ? true : false}
                       />
                     ))}
-                    
                   </div>
 
                   <Button
                     type="text"
                     className={classNames({
-                      'expand-btn w-100 py-3': true,
-                      'd-none': featuredCategories.data.length < 8
+                      'expand-btn w-100 py-2': true
                     })}
                     icon={<ChevronDownIcon />}
                     onClick={() => {
@@ -209,11 +199,7 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
                   ))}
                 </section>
               </Col>
-              <Col
-                className="gutter-row mb-3 px-lg-30 order-1 order-lg-2"
-                xs={24}
-                lg={8}
-              >
+              <Col className="gutter-row mb-3 px-lg-30 " xs={24} lg={8}>
                 <div className="sticky-top">
                   <Input
                     size="large"
