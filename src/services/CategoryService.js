@@ -14,7 +14,6 @@ class CategoryService {
     return axios.get(`/categories/${id}`)
   }
   followCategory(id) {
-    console.log(id)
     return axiosPrivate.get(`/categories/${id}/follow`)
   }
 }

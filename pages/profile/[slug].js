@@ -24,6 +24,7 @@ import Icon, {
   FormOutlined
 } from '@ant-design/icons'
 import ActionButton from '../../components/ActionButton'
+import EmptyContent from '../../components/EmptyContent'
 import {
   followCategory,
   getAllCategories
@@ -34,11 +35,12 @@ import {
 } from '../../components/Placeholders'
 import unfetch from 'isomorphic-unfetch'
 import slug from 'slug'
+import UserCard from '../../components/UserCard'
 
 const { Title, Paragraph } = Typography
 const ShieldIcon = (props) => <Icon component={ShieldSvg} {...props} />
 
-function UserProfile({ user }) {
+function UserProfile({ user, featuredUsers }) {
   const [userId, setUserId] = useState('')
   const dispatch = useDispatch()
   const { data, loading, error } = useSelector((state) => state.categories)
@@ -433,6 +435,7 @@ function UserProfile({ user }) {
                 </section>
 
                 <section>
+                  <EmptyContent />
                   <Title level={4}>Explore</Title>
                   {/*
 {data == null
@@ -651,24 +654,8 @@ function UserProfile({ user }) {
                 </section>
                 <section className="section-padding-2">
                   <Title level={5}>Following</Title>
-                  {[...Array(5)].map((e, i) => (
-                    <Link href="/profile" key={'profile' + i}>
-                      <a>
-                        <div className="mb-2">
-                          <Avvatar
-                            key={i}
-                            size={30}
-                            src={`https://joeschmoe.io//api/v1/male/jack`}
-                            text="Nich Babich"
-                            style={{
-                              minWidth: '30px',
-                              backgroundColor: '#d1d1d1',
-                              fontSize: '12px'
-                            }}
-                          />
-                        </div>
-                      </a>
-                    </Link>
+                  {featuredUsers.data.map((item, index) => (
+                    <UserCard item={item} key={'profile-card-' + index} />
                   ))}
                 </section>
 
@@ -722,14 +709,20 @@ export async function getStaticPaths() {
     fallback: false
   }
 }
+
 export async function getStaticProps({ params }) {
   const id = params.slug.split('-').slice(-1)[0]
 
   const dataUser = await unfetch(`${process.env.BASE_URL}/users/${id}`)
   const user = await dataUser.json()
 
+  const dataFeaturedUsers = await unfetch(
+    `${process.env.BASE_URL}/users/popular`
+  )
+  const featuredUsers = await dataFeaturedUsers.json()
+
   return {
-    props: { user: user.data }
+    props: { user: user.data, featuredUsers: featuredUsers }
   }
 }
 

@@ -6,12 +6,20 @@ const Avvatar = (props) => {
     <div className={`d-flex align-items-center ${props.className}`}>
       <Avatar {...props} />
       <div className="d-flex flex-column" style={{ marginLeft: '7px' }}>
-        <span style={{ fontSize: '16px',marginBottom:'3px' }} className="fw-600 lh-sm ">
-          {props.text}
+        <span
+          style={{ fontSize: '16px', marginBottom: '3px' }}
+          className="fw-600 lh-sm "
+        >
+          {props.head}
         </span>
-        <span style={{ fontSize: '14px' }} className="text-muted lh-sm">
-          {props.description}
-        </span>
+        {props.sub && (
+          <span
+            style={{ fontSize: '14px' }}
+            className="text-muted lh-sm line-clamp line-clamp--2"
+          >
+            {props.sub}
+          </span>
+        )}
       </div>
     </div>
   )

@@ -26,9 +26,6 @@ const info = () => {
 const Layout = (props) => {
   const { user } = useSelector((state) => state.authentication)
   const st = useSelector((state) => state)
-  console.log('xx', st)
-
-  //const [userAuthenticated, setUserAuthenticated] = React.useState(false)
   const [isModalVisible, setIsModalVisible] = React.useState(false)
 
   const onChange = (key) => {
@@ -55,7 +52,7 @@ const Layout = (props) => {
       >
         <Tabs defaultActiveKey="1" type="card">
           <TabPane tab="Sign In" key="1">
-            <LoginForm/>
+            <LoginForm />
           </TabPane>
           <TabPane tab="Sign Up" key="2">
             Content of card tab 2

@@ -435,6 +435,31 @@ button {
     color: white;
   }
 }
+.category-badges {
+  display: flex;
+  flex-wrap: wrap;
+}
+.category-badge {
+  padding: 5px 12px 5px 0;
+  border-radius: 50em;
+  font-size: 12px;
+  font-weight: 600;
+  color: #14a800;
+}
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  &--2 {
+    -webkit-line-clamp: 2;
+  }
+}
+.content-wrapper {
+  padding-block: 3rem;
+}
+
+
+
 .card-padding-responsive {
   padding: clamp(1.3rem, 1%, 2rem) clamp(0rem, 1%, 2rem);
 }

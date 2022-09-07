@@ -30,16 +30,13 @@ import unfetch from 'isomorphic-unfetch'
 import slug from 'slug'
 import TextArea from 'antd/lib/input/TextArea'
 import CommentCard from '../../components/CommentCard'
+import CategoryBadge from '../../components/CategoryBadge'
 
 const { Title, Paragraph } = Typography
 const ShieldIcon = (props) => <Icon component={ShieldSvg} {...props} />
 
 function PostIndex({ post, postComments }) {
-  console.log(postComments)
   const router = useRouter()
-
-  console.log(router.query.slug.split('-').slice(-1)[0])
-
   const [feedData, setFeedData] = React.useState([
     {
       id: 1,
@@ -300,7 +297,6 @@ function PostIndex({ post, postComments }) {
     // setDivContent(textInput.current.innerHTML)
     // console.log(textInput.current.innerHTML)
 
-    console.log('xxx', divContent)
   }, [divContent])
 
   return (
@@ -369,25 +365,40 @@ function PostIndex({ post, postComments }) {
                 <section>
                   <div className="mb-3">
                     <Avvatar
-                      className="mb-2"
-                      size={50}
-                      src={`https://joeschmoe.io/api/v1/male/random`}
-                      // text={post.user.name}
-                      text="Mustafa Özgün"
-                      description="Product designer & editor-in-chief of UX Planet."
-                      style={{
-                        minWidth: '50px',
-                        backgroundColor: '#d1d1d1'
-                      }}
+                      size={20}
+                      className=""
+                      src={`https://joeschmoe.io/api/v1/random`}
+                      head={
+                        <Link
+                          href="/profile/[slug]"
+                          as={`/profile/${slug(post.user.name)}-${
+                            post.user._id
+                          }`}
+                          key={'featuredUser' + post._id}
+                        >
+                          <a>{post.user.name}</a>
+                        </Link>
+                      }
+                      sub={post.user.about}
+                      style={{ backgroundColor: '#d1d1d1' }}
                     />
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: '600' }}>
-                      {post.title}
-                    </h1>
-                    <Paragraph
-                      style={{ fontSize: '1.1rem', lineHeight: '1.1' }}
-                    >
-                      {post.content}
-                    </Paragraph>
+                    <div className="content-wrapper">
+                      <h1
+                        style={{
+                          fontSize: '1.5rem',
+                          fontWeight: '600',
+                          lineHeight: '1.1'
+                        }}
+                      >
+                        {post.title}
+                      </h1>
+                      <Paragraph
+                        style={{ fontSize: '1.1rem', lineHeight: '1.1' }}
+                      >
+                        {post.content}
+                      </Paragraph>
+                      <CategoryBadge item={post.category} />
+                    </div>
                   </div>
 
                   <div className="">
@@ -423,8 +434,8 @@ function PostIndex({ post, postComments }) {
                           <Avvatar
                             size={50}
                             src={`https://joeschmoe.io/api/v1/male/random`}
-                            text="Nich Babich"
-                            description="Product designer & editor-in-chief of UX Planet."
+                            head="Nisi Fugiat "
+                            sub="Aliqua sunt anim labore velit ut dolor."
                             style={{
                               minWidth: '50px',
                               backgroundColor: '#d1d1d1'

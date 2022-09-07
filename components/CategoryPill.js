@@ -6,7 +6,6 @@ import Link from 'next/link'
 import slug from 'slug'
 
 const CategoryPill = ({ item, active }) => {
-  console.log(item)
   return (
     <div className={classNames({ 'category-pill': true, active: active })}>
       <Link

@@ -10,28 +10,15 @@ import {
   CommentsIcon,
   ShareIcon
 } from './CustomIcons'
+import CategoryBadge from './CategoryBadge'
 
 const PostCard = ({ item }) => {
   return (
     <div className="post-card bg-white radius-1 mb-2">
       <Avvatar
-        size={35}
+        size={20}
         src={`https://joeschmoe.io/api/v1/random`}
-        // text={item.category ? item.category.title : 'Lorem'}
-        text={
-          item.category ? (
-            <Link
-              href="/category/[slug]"
-              as={`/category/${slug(item.category.title)}-${item.category._id}`}
-              key={'ctg-' + item.category._id}
-            >
-              <a>{item.category.title}</a>
-            </Link>
-          ) : (
-            'Lorem'
-          )
-        }
-        description={
+        head={
           <Link
             href="/profile/[slug]"
             as={`/profile/${slug(item.user.name)}-${item.user._id}`}
@@ -40,6 +27,7 @@ const PostCard = ({ item }) => {
             <a>{item.user.name}</a>
           </Link>
         }
+        sub='Duis ipsum ad cillum sint'
         style={{ backgroundColor: '#d1d1d1' }}
       />
       <Link
@@ -52,16 +40,17 @@ const PostCard = ({ item }) => {
             <span style={{ fontSize: '16px' }} className="fw-600 lh-sm ">
               {item.title}
             </span>
-            <p className="postcard-content">{item.content}</p>
+            <p className="postcard-content mb-1">{item.content}</p>
           </div>
         </a>
       </Link>
 
+      <div className="category-badges mb-2">
+        <CategoryBadge item={item.category} />
+      </div>
+
       <div className="d-flex">
-        <Link
-          href="/post/[slug]"
-          as={`/post/${slug(item.slug)}-${item._id}`}
-        >
+        <Link href="/post/[slug]" as={`/post/${slug(item.slug)}-${item._id}`}>
           <a
             className="d-flex align-items-center"
             style={{ marginRight: '7px', color: '#919191' }}
@@ -70,16 +59,7 @@ const PostCard = ({ item }) => {
             <span>{item.comments.length + ' Yorum'}</span>
           </a>
         </Link>
-        {/**
-                        <ActionButton
-                          icon={<CommentsIcon />}
-                          text={item.comments.length + ' Yorum'}
-                          style={{ marginRight: '7px', color: '#919191' }}
-                          onClick={() => {
-                            showModal('comments')
-                            getPostComments(item._id)
-                          }}
-                        /> */}
+       
         <ActionButton
           icon={<ShareIcon />}
           text="Paylaş"

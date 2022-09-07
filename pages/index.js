@@ -3,7 +3,6 @@ import { Col, Modal, Row, Button, Input } from 'antd'
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import { Typography } from 'antd'
-import Avvatar from '../components/Avvatar'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import unfetch from 'isomorphic-unfetch'
@@ -11,7 +10,6 @@ import slug from 'slug'
 
 import { ChevronDownIcon, ShieldSvg } from '../components/CustomIcons'
 import Icon, { SearchOutlined } from '@ant-design/icons'
-import ActionButton from '../components/ActionButton'
 import { isLoggedIn } from '../src/utils/authentication'
 import { getAllCategories } from '../src/features/categories/categorySlice'
 import CategoryService from '../src/services/CategoryService'
@@ -19,6 +17,7 @@ import PostService from '../src/services/PostService'
 import PostCard from '../components/PostCard'
 import CategoryPill from '../components/CategoryPill'
 import classNames from 'classnames'
+import UserCard from '../components/UserCard'
 
 const { Title, Paragraph } = Typography
 const ShieldIcon = (props) => <Icon component={ShieldSvg} {...props} />
@@ -158,9 +157,6 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
             <Row gutter={20}>
               <Col className="gutter-row  mb-3 " xs={24} lg={16}>
                 <section className="mb-3">
-                  <Title level={3} className="">
-                    Highlight Topics
-                  </Title>
                   <div
                     className={classNames({
                       'category-pills': true,
@@ -236,27 +232,7 @@ function Home({ popularCategories, featuredCategories, featuredUsers, posts }) {
                   <section className="section-padding-2">
                     <Title level={4}>Top Creators</Title>
                     {featuredUsers.data.map((item, index) => (
-                      <Link
-                        href="/profile/[slug]"
-                        as={`/profile/${slug(item.name)}-${item._id}`}
-                        key={'featuredUser' + item._id}
-                      >
-                        <a className="user-card mb-1">
-                          <div className="">
-                            <Avvatar
-                              key={index}
-                              size={50}
-                              src={`https://joeschmoe.io/api/v1/male/random`}
-                              text={item.name}
-                              description="Product designer & editor-in-chief of UX Planet."
-                              style={{
-                                minWidth: '50px',
-                                backgroundColor: '#d1d1d1'
-                              }}
-                            />
-                          </div>
-                        </a>
-                      </Link>
+                      <UserCard item={item} key={'profile-card+' + index} />
                     ))}
                   </section>
                   <div className="post-card px-1 bg-white radius-1 d-flex align-items-center mb-2">

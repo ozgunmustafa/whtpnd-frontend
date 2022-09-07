@@ -1,5 +1,6 @@
 import axios from 'axios'
 const BASE_URL = 'https://whthpnd-backend-api.herokuapp.com/api'
+//const BASE_URL = 'http://localhost:5000/api'
 
 //const baseURL: 'https://whthpnd-backend-api.herokuapp.com/api',
 //const baseURL: 'https://whthpnd.herokuapp.com/api',
